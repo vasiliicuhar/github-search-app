@@ -37,6 +37,7 @@ const Search: NextPage = () => {
 
   const query = first(router.query.q) ?? "";
   const fullName = first(router.query.fullname) ?? "";
+  const location = first(router.query.loc) ?? "";
   const followers = first(router.query.followers) ?? "";
   const repos = first(router.query.repos) ?? "";
   const lang = first(router.query.lang) ?? "";
@@ -44,14 +45,15 @@ const Search: NextPage = () => {
   const composedQuery = composeQuery({
     query,
     fullName,
+    location,
     followers,
     repos,
     lang,
   });
 
   const initialSearch = useMemo(
-    () => ({ query, fullName, followers, repos, lang }),
-    [followers, fullName, lang, query, repos]
+    () => ({ query, fullName, location, followers, repos, lang }),
+    [followers, fullName, lang, location, query, repos]
   );
 
   return (
@@ -75,6 +77,10 @@ const Search: NextPage = () => {
 
             if (search.query) {
               params.set("q", search.query);
+            }
+
+            if (search.fullName.length) {
+              params.set("fullname", search.fullName);
             }
 
             if (search.location.length) {
