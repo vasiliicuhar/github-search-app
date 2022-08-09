@@ -60,7 +60,7 @@ const Search: NextPage = () => {
     <Group align="start">
       <aside className={classes.sidebar}>
         <Group align="center" sx={{ height: "56px" }}>
-          <NextLink href="/">
+          <NextLink href="/" aria-label="Home page">
             <ThemeIcon color="dark">
               <IconBrandGithub />
             </ThemeIcon>

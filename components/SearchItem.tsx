@@ -1,8 +1,11 @@
 import { GithubSearchResultItem } from "@/lib/types/search";
 import { Avatar, Badge, Group, ThemeIcon, Text } from "@mantine/core";
 import { IconGitBranch } from "@tabler/icons";
+import { useId } from "react";
 
 export default function SearchItem({ data }: { data: GithubSearchResultItem }) {
+  const reposLabelId = useId();
+
   return (
     <Group mb="md" noWrap>
       <Avatar src={data.avatarUrl} alt="" size="sm" />
@@ -29,6 +32,7 @@ export default function SearchItem({ data }: { data: GithubSearchResultItem }) {
                 size="xs"
                 variant="filled"
                 color="gray"
+                id={reposLabelId}
               >
                 <IconGitBranch />
               </ThemeIcon>
@@ -40,6 +44,7 @@ export default function SearchItem({ data }: { data: GithubSearchResultItem }) {
                     href={repo.url}
                     target="_blank"
                     rel="noreferrer"
+                    aria-describedby={reposLabelId}
                   >
                     {repo.name}
                   </Text>
