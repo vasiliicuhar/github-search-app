@@ -1,4 +1,4 @@
-import { first } from "@/lib/router";
+import { firstQueryParam } from "@/lib/router";
 import { GithubSearchResponse, SearchResponse } from "@/lib/types/search";
 import request, { gql } from "graphql-request";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -10,9 +10,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<SearchResponse>
 ) {
-  const query = first(req.query.q) ?? "";
-  const start = first(req.query.start);
-  const limit = Number(first(req.query.limit)) || 10;
+  const query = firstQueryParam(req.query.q) ?? "";
+  const start = firstQueryParam(req.query.start);
+  const limit = Number(firstQueryParam(req.query.limit)) || 10;
 
   const data: GithubSearchResponse = await request(
     GITHUB_API,

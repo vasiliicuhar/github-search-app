@@ -1,7 +1,7 @@
 import AdvancedSearch, { SearchOptions } from "@/components/AdvancedSearch";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import SearchResults from "@/components/SearchResults";
-import { first } from "@/lib/router";
+import { firstQueryParam } from "@/lib/router";
 import {
   Button,
   Group,
@@ -35,12 +35,12 @@ const Search: NextPage = () => {
   const { classes } = useStyles();
   const router = useRouter();
 
-  const query = first(router.query.q) ?? "";
-  const fullName = first(router.query.fullname) ?? "";
-  const location = first(router.query.loc) ?? "";
-  const followers = first(router.query.followers) ?? "";
-  const repos = first(router.query.repos) ?? "";
-  const lang = first(router.query.lang) ?? "";
+  const query = firstQueryParam(router.query.q) ?? "";
+  const fullName = firstQueryParam(router.query.fullname) ?? "";
+  const location = firstQueryParam(router.query.loc) ?? "";
+  const followers = firstQueryParam(router.query.followers) ?? "";
+  const repos = firstQueryParam(router.query.repos) ?? "";
+  const lang = firstQueryParam(router.query.lang) ?? "";
 
   const composedQuery = composeQuery({
     query,
